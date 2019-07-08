@@ -1,1 +1,0 @@
-<Playlist Version="1.0"><Add Test="Skillswap.EducationFeature.AddNewEducationEntryToSellerProfile(&quot;JNTU&quot;,&quot;IT&quot;,null)" /><Add Test="Skillswap.EducationFeature.EditTheExistingEducationInSellerProfile" /><Add Test="Skillswap.EducationFeature.DeleteTheExistingEducationInSellerProfile" /></Playlist>
