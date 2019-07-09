@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using RelevantCodes.ExtentReports;
 using SpecflowPages;
+using SpecflowTests.Utils;
 using System;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -9,17 +10,20 @@ using static SpecflowPages.CommonMethods;
 namespace SpecflowTests.AcceptanceTest
 {
     [Binding]
-    public class LanguageFeatureSteps : Utils.Start
+    public class LanguageFeatureSteps :Utils.Start
     {
+        
         [Given(@"I clicked on the Language tab under Profile page")]
         public void GivenIClickedOnTheLanguageTabUnderProfilePage()
         {
+            //Start startpage = new Start();
+            //startpage.SetUp();
             //Wait
             Thread.Sleep(1500);
        
             // Click on Profile tab
             Driver.driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[1]/div/a[2]")).Click();
-
+            Thread.Sleep(10000);
             
         }
         
@@ -56,7 +60,7 @@ namespace SpecflowTests.AcceptanceTest
 
                 Thread.Sleep(1000);
                 string ExpectedValue = "English";
-                int rows = driver.FindElements(By.XPath("//table[@id='account-profile-section']/tbody/tr")).Count;
+                int rows = Driver.driver.FindElements(By.XPath("//table[@id='account-profile-section']/tbody/tr")).Count;
 
                 for (int i = 1; i <= rows; i++)
                 {
@@ -79,23 +83,24 @@ namespace SpecflowTests.AcceptanceTest
                 CommonMethods.test.Log(LogStatus.Fail, "Test Failed",e.Message);
             }
 
-             
+            
+
 
         }
 
         [When(@"I update existing language")]
         public void WhenIUpdateExistingLanguage()
         {
-            IWebElement writebtn = driver.FindElement(By.XPath("//td[text()='English' ]/following-sibling::td[text()='Basic']/following-sibling::td[@class='right aligned']/child::span[@class='button']/child::i[@class='outline write icon']"));
+            IWebElement writebtn = Driver.driver.FindElement(By.XPath("//td[text()='English' ]/following-sibling::td[text()='Basic']/following-sibling::td[@class='right aligned']/child::span[@class='button']/child::i[@class='outline write icon']"));
             writebtn.Click();
-            IWebElement editlangtext = driver.FindElement(By.XPath("//input[@value='English']"));
+            IWebElement editlangtext = Driver.driver.FindElement(By.XPath("//input[@value='English']"));
             editlangtext.Clear();
             editlangtext.SendKeys("Thai");
-            IWebElement editleveldropdown = driver.FindElement(By.XPath("//select[@class='ui dropdown']"));
+            IWebElement editleveldropdown = Driver.driver.FindElement(By.XPath("//select[@class='ui dropdown']"));
             editleveldropdown.Click();
-            IWebElement fluentlevel = driver.FindElement(By.XPath("//*[contains(@value,'Fluent')]"));
+            IWebElement fluentlevel = Driver.driver.FindElement(By.XPath("//*[contains(@value,'Fluent')]"));
             fluentlevel.Click();
-            IWebElement updatebtn = driver.FindElement(By.XPath("//input[@value='Update']"));
+            IWebElement updatebtn = Driver.driver.FindElement(By.XPath("//input[@value='Update']"));
             updatebtn.Click();
             Thread.Sleep(10000);
         }
@@ -112,7 +117,7 @@ namespace SpecflowTests.AcceptanceTest
 
                 Thread.Sleep(1000);
                 string ExpectedValue = "Thai";
-                int rows = driver.FindElements(By.XPath("//table[@id='account-profile-section']/tbody/tr")).Count;
+                int rows = Driver.driver.FindElements(By.XPath("//table[@id='account-profile-section']/tbody/tr")).Count;
 
                 for (int i = 1; i <= rows; i++)
                 {

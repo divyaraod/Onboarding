@@ -11,22 +11,25 @@ using static SpecflowPages.CommonMethods;
 
 namespace SpecflowTests.Utils
 {
-    public class Start : Driver
+    [Binding]
+    public class Start 
     {
-        [BeforeScenario]
-        public void SetUp()
+      [BeforeTestRun]
+      
+        public static void SetUp()
         {
             //Launch the browser
-            Initialize();
+           Driver.Initialize();
             Thread.Sleep(500);
 
             //Call the Login Class            
-            SpecflowPages.Utils.LoginPage.LoginStep();         
+            SpecflowPages.Utils.LoginPage.LoginStep();
+           
                       
         }
 
-        [AfterScenario]
-        public void TearDown()
+       [AfterTestRun]
+        public static void TearDown()
         {
             Thread.Sleep(500);
             // Screenshot
@@ -40,8 +43,10 @@ namespace SpecflowTests.Utils
             CommonMethods.extent.Flush();
 
             //Close the browser
-            Close();
+            Driver.Quit();
+            Thread.Sleep(500);
         }
+       
 
     }
 }

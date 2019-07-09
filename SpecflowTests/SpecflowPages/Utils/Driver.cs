@@ -15,8 +15,11 @@ namespace SpecflowPages
 
         public static void Initialize()
         {
-            //Defining the browser
-            driver = new ChromeDriver();
+            
+            
+                driver = new ChromeDriver();
+            
+            //driver = new ChromeDriver();
             TurnOnWait();
 
             //Maximise the window
@@ -42,9 +45,11 @@ namespace SpecflowPages
         }
 
         //Close the browser
-        public static void Close()
+        public static void Quit()
         {
-            driver.Close();
+            if (driver == null)
+                return;
+            driver.Quit();
         }
 
     }
